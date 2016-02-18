@@ -1,0 +1,263 @@
+body{
+  overflow-x:hidden;
+}
+/* HEADER */
+.jumbotron{
+  padding-top:10px;
+  padding-bottom:0;
+  z-index:-2;
+}
+.copyright{
+  position:absolute;
+  top:0;
+  right:10;
+}
+li a{
+  color: black;
+  text-decoration:none;
+}
+li a:link {
+  color: black;
+  text-decoration:none;
+}
+
+/* visited link */
+li a:visited {
+  color: black;
+  text-decoration:none;
+}
+
+/* mouse over link */
+li a:hover {
+  color: black;
+  text-decoration:none;
+}
+
+/* selected link */
+li a:active {
+  color: black;
+  text-decoration:none;
+}
+.nav{
+  margin-top:20px;
+  font-size:18px;
+  z-index:2;
+}
+li a{
+  display: block;
+  padding: 10px 0;
+  text-decoration:none;
+}
+/* slider */
+.nav ul.slider{
+  padding:0;
+  display:block;
+  list-style: none;
+}
+.nav ul.slider li{
+  position: relative;
+  padding: 0 25px;
+  background-color: #FFF;
+  display: inline-block;
+  cursor: pointer;
+  min-width:100%;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.nav ul.slider>li{
+  padding: 10px 25px;
+  text-align:center;
+}
+.nav ul.slider>li>ul>li{
+  text-align:left;
+}
+.nav ul.slider li:hover{
+  background-color: #FFF;
+}
+.nav ul.slider li ul{
+  position: static; !important
+  width:100%;
+  display: none;
+}
+.nav ul.slider li ul li{
+  z-index:2;
+  width:100%;
+  background-color: #DDD;
+  display: block;
+}
+.nav ul.slider li ul li:active{
+  background-color:#EEE;
+}
+.nav ul.slider:hover li ul{
+  display: none;
+}
+
+/* dropdown */
+.nav ul.dropdown{
+  padding:0;
+  display:block;
+  list-style: none;
+}
+.nav ul.dropdown li{
+  position: relative;
+  padding: 0 25px;
+  background-color: #FFF;
+  display: inline-block;
+  cursor: pointer;
+  margin-right:-6px;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.nav ul.dropdown>li{
+  padding: 10px 25px;
+  text-align:center;
+}
+.nav ul.dropdown>li>ul>li{
+  text-align:left;
+}
+.nav ul.dropdown li:hover{
+  background-color: #DDD;
+}
+.nav ul.dropdown li ul{
+  position: absolute;
+  left: 0;
+  top: 44px;
+  display: none;
+}
+.nav ul.dropdown li ul.pullLeft{
+  right:12;
+  left:auto;
+}
+.nav ul.dropdown li:last-child ul.pullLeft{
+  right:6;
+  left:auto;
+}
+.nav ul.dropdown li ul li{
+  z-index:2;
+  white-space: nowrap;
+  background-color: #DDD;
+  display: block;
+}
+.nav ul.dropdown li:hover ul{
+  display: block;
+}
+.nav ul.dropdown li ul li:hover{
+  background-color:#EEE;
+}
+.nav ul.dropdown li ul:hover{
+  display: block;
+}
+/*oldstuff*/
+.nav ul{
+  padding:0;
+  display:block;
+  list-style: none;
+}
+/* BODY */
+.currentSection{
+  font-size:20px;
+}
+object{
+  width:100%;
+  max-height:100%;
+  margin-right:20px;
+  position:relative;
+}
+object.test{
+  width:100%;
+  height:100%;
+  max-height:100%;
+  margin-right:20px;
+  position:relative;
+}
+.selectPDF ul{
+  padding:0;
+}
+.selectPDF ul li{
+  text-align:center;
+  padding: 0 25px;
+  display: block;
+  background-color:#DDD;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.selectPDF ul li a{
+  padding:12px 0;
+}
+.selectPDF ul li:hover{
+  background-color:#EEE;
+  text-decoration:none;
+  cursor: pointer;
+}
+.selectPDF ul li.nonClickable{
+  text-decoration: underline;
+  border-bottom:solid black 1px;
+  font-weight: bold;
+  background-color:#FFF;
+  padding:12px 0;
+}
+.selectPDF ul li.nonClickable:hover{
+  background-color:#FFF;
+  cursor: default;
+}
+.selectPDF ul li.exName{
+  border-bottom:solid black 1px;
+  font-weight: bold;
+  background-color:#EEE;
+  padding:12px 0;
+}
+.selectPDF ul li.exName:hover{
+  background-color:#EEE;
+  cursor: default;
+}
+.scrollerSelectPDF{
+  height:100%;
+  overflow-y:scroll;
+}
+.fullscreen-button{
+  position:absolute;
+  width:35px;
+  bottom:75;
+  right:40;
+  z-index:2;
+}
+.fullscreen-button:hover{
+  cursor: pointer;
+}
+img.halffullscreen-button{
+  position:absolute;
+  width:35px;
+  bottom:75;
+  right:80;
+  z-index:2;
+}
+img.halffullscreen-button:hover{
+  cursor: pointer;
+}
+.download-button{
+  position:absolute;
+  width:35px;
+  bottom:75;
+  right:120;
+  z-index:2;
+}
+.download-button:hover{
+  cursor: pointer;
+}
+.anchor{
+  text-align:center;
+}
+.fb{
+  position:absolute;
+  top:5px;
+  right:180px;
+}

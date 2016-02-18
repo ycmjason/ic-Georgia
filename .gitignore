@@ -1,0 +1,6 @@
+*.swp
+pdf/*
+exercise/*
+*.py
+python
+*.log
