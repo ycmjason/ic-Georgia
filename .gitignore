@@ -3,4 +3,4 @@ pdf/*
 exercise/*
 *.py
 python
-*.log
+*.log*
