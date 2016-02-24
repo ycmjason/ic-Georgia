@@ -5,3 +5,4 @@ exercise/*
 python
 *.log*
 dirList
+show*log
