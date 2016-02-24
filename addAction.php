@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$PREF_FILE="action.log";
+$PREF_FILE="log/action.log";
 
 $userIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
 $pref   = str_replace("|","",htmlspecialchars(trim($_POST['action'])));

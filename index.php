@@ -4,7 +4,7 @@ $VERSION="3.6";
 $DEVELOPMENT_MODE=FALSE;
 date_default_timezone_set("Europe/London");
 require("../visitorlog.php");
-$logger=new VisitorLogger("georgia.log");
+$logger=new VisitorLogger("log/georgia.log");
 if(!$DEVELOPMENT_MODE){
   $logger->log();
 }
