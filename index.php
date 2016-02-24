@@ -89,11 +89,11 @@ fjs.parentNode.insertBefore(js, fjs);
             </div>
           </div>
         </div>
-        <div class="col-lg-9 visible-lg"> 
+        <div class="col-md-12 col-lg-9"> 
           <a href="./pdf/keepCalmAndRevise.pdf" download>
             <img title="Download pdf" src="include/images/download.png" class="download-button">
           </a>
-          <img title="Half fullscreen" src="include/images/halffullscreen.png" class="halffullscreen-button">
+          <img title="Half fullscreen" src="include/images/halffullscreen.png" class="halffullscreen-button visible-lg">
           <img title="Fullscreen" src="include/images/fullscreen.png" class="fullscreen-button">
           <div id="pdfviewer">
             <object class="test" type="application/pdf" data="./pdf/keepCalmAndRevise.pdf"> 
@@ -164,21 +164,15 @@ function changeSelectPDF(){
 
                 $.each(fullpath, function(file, fullpath){
                   if(file=="length"){return;}
-                  html+="<li class=\"visible-lg\">\
+                  html+="<li>\
                     <a onclick=\"changePDF('"+fullpath+"',this)\">"+file.split(".pdf")[0]+"</a>\
-                  </li>";
-                  html+="<li class=\"hidden-lg\">\
-                    <a href=\""+fullpath+"\" download>"+file.split(".pdf")[0]+"</a>\
                   </li>";
                 })
               })
             }else{
               if(file=="length"){return;}
-              html+="<li class=\"visible-lg\">\
+              html+="<li>\
                 <a onclick=\"changePDF('"+fullpath+"',this)\">"+file.split(".pdf")[0]+"</a>\
-              </li>";
-              html+="<li class=\"hidden-lg\">\
-                <a href=\""+fullpath+"\" download>"+file.split(".pdf")[0]+"</a>\
               </li>";
             }
           });
@@ -296,6 +290,7 @@ function addChangelogLi(navBarUl){
   addChangelog("v3.5: Update on PDFs due to some changes made on them. (17 Apr, 2015)");  
   addChangelog("v3.6: Added restriction for Georgia. (18 Feb, 2016)");  
   addChangelog("v3.7: Now Georgia is very compatible with other browsers. Thanks to Google Drive. (24 Feb, 2016)");  
+  addChangelog("v3.71: Added mobile compatibility. (24 Feb, 2016)");  
   ul.append("<li><a>References:</a><li>")
   addReference("Youtube videos are embeded. Please click on the video to find out more","");
 }
@@ -323,12 +318,12 @@ function getCurrentOffsetLeft(elem){
 //fullscreen
 $(".fullscreen-button").click(goFullscreen);
 function goFullscreen(){
-  if(!$("object").data("isFullscreen")){
-    $("object").css("top",-getCurrentOffsetTop($("object"))).css("left",-getCurrentOffsetLeft($("object"))).css("height",window.innerHeight).css("width",window.innerWidth).data("isFullscreen",true);
+  if(!$("#pdfviewer iframe").data("isFullscreen")){
+    $("#pdfviewer iframe").css("top",-getCurrentOffsetTop($("#pdfviewer iframe"))).css("left",-getCurrentOffsetLeft($("#pdfviewer iframe"))).css("height",window.innerHeight).css("width",window.innerWidth).data("isFullscreen",true);
     $("body").css("overflow","hidden");
     toast("Entering fullscreen mode.");
   }else{
-    fullscreen = $("object").removeAttr("style").data("isFullscreen", false);
+    fullscreen = $("#pdfviewer iframe").removeAttr("style").data("isFullscreen", false);
     $("body").css("overflow","");
     toast("Quiting fullscreen mode.");
   }
