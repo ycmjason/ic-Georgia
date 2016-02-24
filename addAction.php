@@ -10,6 +10,4 @@ $filename=$PREF_FILE;
 $file=fopen($filename,"a");
 fwrite($file,date("Y-m-d H:i:s")."|".date("D j M, Y g:i a")."|".$userIp."|".$pref."\n");
 fclose($file);
-
-
 ?>

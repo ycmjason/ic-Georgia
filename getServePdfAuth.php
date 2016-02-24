@@ -3,7 +3,7 @@
 $secret=file('secret');
 
 $file = $_POST['file'];
-$req_time = $_POST['req_time'];
+$req_time = time();
 
 $expected_auth = md5($secret.$req_time);
 ?> 

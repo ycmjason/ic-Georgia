@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$VERSION="3.6";
+$VERSION="3.7";
 $DEVELOPMENT_MODE=FALSE;
 date_default_timezone_set("Europe/London");
 require("../visitorlog.php");
@@ -34,10 +34,10 @@ function changePDF(path, elem){
   return false;
 }
 function getGviewerURL(servePdfUrl){
-  return 'https://docs.google.com/gview?embedded=true&url='+encodeURIComponent(servePdfUrl);
+  return 'https://docs.google.com/viewer?embedded=true&url='+encodeURIComponent(servePdfUrl);
 }
 function getPdfUrl(pdfUrl){
-  return $.post("getServePdfAuth.php", {file: pdfUrl, req_time: new Date().getTime()});
+  return $.post("getServePdfAuth.php", {file: pdfUrl});
 }
 //changePDF
 function pureChangePDF(p){
@@ -295,6 +295,7 @@ function addChangelogLi(navBarUl){
   addChangelog("v3.4: Toast message appearing when toggling half-fullscreen mode. (11 Apr, 2015)");  
   addChangelog("v3.5: Update on PDFs due to some changes made on them. (17 Apr, 2015)");  
   addChangelog("v3.6: Added restriction for Georgia. (18 Feb, 2016)");  
+  addChangelog("v3.7: Now Georgia is very compatible with other browsers. Thanks to Google Drive. (24 Feb, 2016)");  
   ul.append("<li><a>References:</a><li>")
   addReference("Youtube videos are embeded. Please click on the video to find out more","");
 }
@@ -334,11 +335,11 @@ function goFullscreen(){
 }
 //half fullscreen
 function goHalfFullscreen(){
-  if(!$("object").data("isHalfFullscreen")){
+  if(!$("html").data("isHalfFullscreen")){
     toast("Entering half-fullscreen mode. Hit [SPACE] to quit.");
     //$(window).scrollTop(0);
     $("header").slideUp();
-    $("object").data("isHalfFullscreen", true);
+    $("html").data("isHalfFullscreen", true);
 
   }else{
     toast("Quiting half-fullscreen mode. Hit [SPACE] to enter.");
@@ -346,7 +347,7 @@ function goHalfFullscreen(){
         scrollTop: 0
     }, 500);
     $("header").slideDown();
-    $("object").data("isHalfFullscreen", false)
+    $("html").data("isHalfFullscreen", false)
   }
 }
 $(".halffullscreen-button").click(goHalfFullscreen);
