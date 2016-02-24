@@ -80,9 +80,6 @@ fjs.parentNode.insertBefore(js, fjs);
     </header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12 hidden-lg anchor">
-          Files you click on will be downloaded to your device.<br> <b>IMPORTANT:</b> If you are using a computer, please put your browser into fullscreen for pdf live viewing.
-        </div>
         <div class="col-md-12 col-lg-3"> 
           <div class="scrollerSelectPDF">
             <div class="selectPDF">
