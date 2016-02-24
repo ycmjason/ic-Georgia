@@ -1,15 +1,15 @@
 #!/usr/bin/php
 <?php
-$secret="this is a nice lovely secret for georgia.";
+$secret=file('secret');
 
-$file=$_GET['file'].".pdf";
-$hash=$_GET['hash'];
+$file=$_GET['file'];
+$auth=$_GET['auth'];
 $req_time=$_GET['req_time'];
 
 $curr_time = time();
-$expected_hash = md5($secret.$req_time);
+$expected_auth = md5($secret.$req_time);
 
-if(false && ($curr_time-$req_time > 5 || $hash!=$expected_hash)) die("hash not matching, please try again.");
+if($curr_time-$req_time > 5 || $auth!=$expected_auth) die("auth is not correct, please try again.");
 
 header('Content-Type: application/pdf');
 header('Content-Disposition: inline; filename="' . basename($file).'"');

@@ -25,28 +25,38 @@ $display['nav'] = file_get_contents("dirList");
     <meta name="description" content="Georgia is a online pdf viewer which has all the notes/exercises from CATe, a system used by the Department of Computing, Imperial College.">
     <meta name="keywords" content="georgia imperial doc computing pdf viewer notes cate">
     <script>
-      //changePDF
-      function changePDF(path, elem){
-        $("object").html("Your browser doesn't support viewing PDF. Change a browser or click <a href=\""+path+"\">here</a>.");
-        $(".row li").css("background-color","");
-        $(elem).parent().css("background-color","rgba(81, 203, 238, 0.7)");
-        pureChangePDF(path);
-        return false;
-      }
-      //changePDF
-      function pureChangePDF(path){
-        var newObject = $('<object data="'+path+'" class="test" type="application/pdf"></object>');
-        $(".download-button").parent().attr("href",path);
-        $("#pdfviewer").html(newObject);
-<?php if(!$DEVELOPMENT_MODE){?>
-        if(path.split("./pdf/")[1]==undefined){
-          $.post("addAction.php",{action:path.split("./")[1]});
-        }else{
-          $.post("addAction.php",{action:path.split("./pdf/")[1]});
-        }
-<?php }?>
-        return false;
-      }
+//changePDF
+function changePDF(path, elem){
+  $("object").html("Your browser doesn't support viewing PDF. Change a browser or click <a href=\""+path+"\">here</a>.");
+  $(".row li").css("background-color","");
+  $(elem).parent().css("background-color","rgba(81, 203, 238, 0.7)");
+  pureChangePDF(path);
+  return false;
+}
+function getGviewerURL(servePdfUrl){
+  return 'https://docs.google.com/gview?embedded=true&url='+encodeURIComponent(servePdfUrl);
+}
+function getPdfUrl(pdfUrl){
+  return $.post("getServePdfAuth.php", {file: pdfUrl, req_time: new Date().getTime()});
+}
+//changePDF
+function pureChangePDF(p){
+  getPdfUrl(p).done(function(path){
+    path=path.trim();
+    path=getGviewerURL(path);
+    var newObject = $('<iframe src="'+path+'" class="test" type="application/pdf"></iframe>');
+    $(".download-button").parent().attr("href",path);
+    $("#pdfviewer").html(newObject);
+  <?php if(!$DEVELOPMENT_MODE){?>
+    if(path.split("./pdf/")[1]==undefined){
+      $.post("addAction.php",{action:path.split("./")[1]});
+    }else{
+      $.post("addAction.php",{action:path.split("./pdf/")[1]});
+    }
+  <?php }?>
+  });
+}
+pureChangePDF('./pdf/keepCalmAndRevise.pdf'); 
     </script>
   </head>
   <body>
