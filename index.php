@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$VERSION="3.7";
+$VERSION="3.8";
 $DEVELOPMENT_MODE=FALSE;
 date_default_timezone_set("Europe/London");
 require("../visitorlog.php");
@@ -25,6 +25,12 @@ $display['nav'] = file_get_contents("dirList");
     <meta name="description" content="Georgia is a online pdf viewer which has all the notes/exercises from CATe, a system used by the Department of Computing, Imperial College.">
     <meta name="keywords" content="georgia imperial doc computing pdf viewer notes cate">
     <script>
+var pdfViewer="Google Docs"; // or ViewerJS
+var curr_pdf="";
+function togglePdfViewer(){
+  pdfViewer = (pdfViewer=="Google Docs")?"ViewerJS":"Google Docs";
+  pureChangePDF(curr_pdf);
+}
 //changePDF
 function changePDF(path, elem){
   $("object").html("Your browser doesn't support viewing PDF. Change a browser or click <a href=\""+path+"\">here</a>.");
@@ -41,20 +47,38 @@ function getPdfUrl(pdfUrl){
 }
 //changePDF
 function pureChangePDF(p){
-  getPdfUrl(p).done(function(path){
-    path=path.trim();
-    path=getGviewerURL(path);
-    var newObject = $('<iframe src="'+path+'" class="test" type="application/pdf"></iframe>');
-    $(".download-button").parent().attr("href",path);
-    $("#pdfviewer").html(newObject);
-  <?php if(!$DEVELOPMENT_MODE){?>
-    if(path.split("./pdf/")[1]==undefined){
-      $.post("addAction.php",{action:path.split("./")[1]});
-    }else{
-      $.post("addAction.php",{action:path.split("./pdf/")[1]});
-    }
-  <?php }?>
-  });
+  curr_pdf=p;
+  switch(pdfViewer){
+    case "Google Docs":
+      getPdfUrl(p).done(function(path){
+        path=path.trim();
+        path=getGviewerURL(path);
+        var newObject = $('<iframe src="'+path+'" class="test" type="application/pdf"></iframe>');
+        $(".download-button").parent().attr("href",path);
+        $("#pdfviewer").html(newObject);
+        <?php if(!$DEVELOPMENT_MODE){?>
+        if(path.split("./pdf/")[1]==undefined){
+          $.post("addAction.php",{action:path.split("./")[1]});
+        }else{
+          $.post("addAction.php",{action:path.split("./pdf/")[1]});
+        }
+        <?php }?>
+      });
+      break;
+    case "ViewerJS":
+      var path=p;
+      var newObject = $('<iframe src="ViewerJS/#../'+path+'" class="test" type="application/pdf"></iframe>');
+      $(".download-button").parent().attr("href",path);
+      $("#pdfviewer").html(newObject);
+      <?php if(!$DEVELOPMENT_MODE){?>
+      if(path.split("./pdf/")[1]==undefined){
+        $.post("addAction.php",{action:path.split("./")[1]});
+      }else{
+        $.post("addAction.php",{action:path.split("./pdf/")[1]});
+      }
+      <?php }?>
+      break;
+  }
 }
 pureChangePDF('./pdf/keepCalmAndRevise.pdf'); 
     </script>
@@ -80,7 +104,7 @@ fjs.parentNode.insertBefore(js, fjs);
     </header>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12 col-lg-3"> 
+        <div class="col-md-12 col-lg-3 anchor"> 
           <div class="scrollerSelectPDF">
             <div class="selectPDF">
             </div>
@@ -92,6 +116,7 @@ fjs.parentNode.insertBefore(js, fjs);
           </a>
           <img title="Half fullscreen" src="include/images/halffullscreen.png" class="halffullscreen-button visible-lg">
           <img title="Fullscreen" src="include/images/fullscreen.png" class="fullscreen-button">
+          <div class="toggle-pdf-viewer-button" onclick="togglePdfViewer()">Viewer</div>
           <div id="pdfviewer">
             <object class="test" type="application/pdf" data="./pdf/keepCalmAndRevise.pdf"> 
             </object>
@@ -288,6 +313,7 @@ function addChangelogLi(navBarUl){
   addChangelog("v3.6: Added restriction for Georgia. (18 Feb, 2016)");  
   addChangelog("v3.7: Now Georgia is very compatible with other browsers. Thanks to Google Drive. (24 Feb, 2016)");  
   addChangelog("v3.71: Added mobile compatibility. (24 Feb, 2016)");  
+  addChangelog("v3.8: Changing pdf viewer is possible now. Choose from Doc's Viewer/ViewerJS. (25 Feb, 2016)");  
   ul.append("<li><a>References:</a><li>")
   addReference("Youtube videos are embeded. Please click on the video to find out more","");
 }

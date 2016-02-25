@@ -253,8 +253,19 @@ img.halffullscreen-button:hover{
 .download-button:hover{
   cursor: pointer;
 }
-.anchor{
+.toggle-pdf-viewer-button{
+  position:absolute;
+  width:55px;
   text-align:center;
+  border-radius:20%;
+  line-height:35px;
+  bottom:75;
+  right:160;
+  z-index:2;
+  border:1px solid black;
+}
+.toggle-pdf-viewer-button:hover{
+  cursor: pointer;
 }
 .fb{
   position:absolute;
