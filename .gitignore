@@ -4,6 +4,5 @@ exercise/*
 *.py
 python
 log
-dirList
 show*log
 secret
