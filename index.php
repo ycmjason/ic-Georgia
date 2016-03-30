@@ -48,6 +48,13 @@ function getPdfUrl(pdfUrl){
 //changePDF
 function pureChangePDF(p){
   curr_pdf=p;
+  <?php if(!$DEVELOPMENT_MODE){?>
+  if(p.split("./pdf/")[1]==undefined){
+    $.post("addAction.php",{action:p.split("./")[1]});
+  }else{
+    $.post("addAction.php",{action:p.split("./pdf/")[1]});
+  }
+  <?php }?>
   switch(pdfViewer){
     case "Google Docs":
       getPdfUrl(p).done(function(path){
@@ -56,9 +63,6 @@ function pureChangePDF(p){
         var newObject = $('<iframe src="'+path+'" class="test" type="application/pdf"></iframe>');
         $(".download-button").parent().attr("href",path);
         $("#pdfviewer").html(newObject);
-        <?php if(!$DEVELOPMENT_MODE){?>
-        $.post("addAction.php",{action:path});
-        <?php }?>
       });
       break;
     case "ViewerJS":
@@ -66,9 +70,6 @@ function pureChangePDF(p){
       var newObject = $('<iframe src="ViewerJS/#../'+path+'" class="test" type="application/pdf"></iframe>');
       $(".download-button").parent().attr("href",path);
       $("#pdfviewer").html(newObject);
-      <?php if(!$DEVELOPMENT_MODE){?>
-      $.post("addAction.php",{action:path});
-      <?php }?>
       break;
   }
 }
