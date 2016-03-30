@@ -57,11 +57,7 @@ function pureChangePDF(p){
         $(".download-button").parent().attr("href",path);
         $("#pdfviewer").html(newObject);
         <?php if(!$DEVELOPMENT_MODE){?>
-        if(path.split("./pdf/")[1]==undefined){
-          $.post("addAction.php",{action:path.split("./")[1]});
-        }else{
-          $.post("addAction.php",{action:path.split("./pdf/")[1]});
-        }
+        $.post("addAction.php",{action:path});
         <?php }?>
       });
       break;
@@ -71,11 +67,7 @@ function pureChangePDF(p){
       $(".download-button").parent().attr("href",path);
       $("#pdfviewer").html(newObject);
       <?php if(!$DEVELOPMENT_MODE){?>
-      if(path.split("./pdf/")[1]==undefined){
-        $.post("addAction.php",{action:path.split("./")[1]});
-      }else{
-        $.post("addAction.php",{action:path.split("./pdf/")[1]});
-      }
+      $.post("addAction.php",{action:path});
       <?php }?>
       break;
   }
