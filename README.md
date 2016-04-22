@@ -1,6 +1,6 @@
 Georgia
 =======
 
-[https://www.doc.ic.ac.uk/~cmy14/claudia/](https://www.doc.ic.ac.uk/~cmy14/claudia/)
+[https://www.doc.ic.ac.uk/~cmy14/georgia/](https://www.doc.ic.ac.uk/~cmy14/georgia/)
 
-Online notes(pdf) viewer for computing students.
+![snapshot](http://i.imgur.com/RQuAHVt.png)
