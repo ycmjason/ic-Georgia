@@ -165,6 +165,7 @@ function changeSelectPDF(){
   if(cls=="" || subject=="") return;
   $.each(nav, function(k,v){
     if(cls==k){
+      goHalfFullscreen();
       $.each(nav[cls],function(k,files){
         if(k=="length"){return;}
         if(subject==k){
@@ -217,7 +218,6 @@ changeSelectPDF();
 $(".nav>ul>li>ul>li>a.subject").click(changeSelectPDF)
 $(".nav ul.dropdown>li>ul").click(function(){
   $(this).css("display","none");
-  goHalfFullscreen();
 });
 $(".nav ul.dropdown>li>ul").hover(function(){
   $(this).removeAttr("style");
